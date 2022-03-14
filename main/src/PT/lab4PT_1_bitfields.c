@@ -24,7 +24,7 @@ int main(){
         info.flagValid=1;
     }
     info.dayOfTheWeek=111;
-    info.age=101;
+    info.age=011;
     printf("%u %u\n",info.dayOfTheWeek,info.age);
 
 
