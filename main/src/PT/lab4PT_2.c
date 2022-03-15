@@ -135,7 +135,6 @@ void write_coords(struct complex* geomObj,unsigned n){
             geomObj[i].coords.rectangle.p4.x4,geomObj[i].coords.rectangle.p4.y4);
         }
     }
-    //do a program lab6PT_2_2.c where you use the function pointers correctly (two functions for each)
 }
 
 int main(){
