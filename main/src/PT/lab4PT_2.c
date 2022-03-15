@@ -72,7 +72,7 @@ unsigned read_coords_and_get_nrOfElem(struct complex* geomObj){ //one function s
     unsigned nrOfElements=0;
     while (key && nrOfElements<=1000)
     {
-        printf("If you want to exit out of this program enter '0' else enter '1' for a circle '2' for a triangle '3' for a rectangle\n");
+        printf("If you want to exit out of this program enter '0', else enter '1' for a circle, '2' for a triangle, '3' for a rectangle\n");
         scanf("%d",&key);
         if (key>3)
         {
@@ -82,20 +82,20 @@ unsigned read_coords_and_get_nrOfElem(struct complex* geomObj){ //one function s
         {
             geomObj[nrOfElements].geomFig=circle;
             printf("Enter the coordinates of the circle: center (x,y) and radius\n");
-            scanf("(%f,%f) %f",&geomObj[nrOfElements].coords.circle.centerX,&geomObj[nrOfElements].coords.circle.centerY,&geomObj[nrOfElements].coords.circle.radius);
+            scanf("%f %f %f",&geomObj[nrOfElements].coords.circle.centerX,&geomObj[nrOfElements].coords.circle.centerY,&geomObj[nrOfElements].coords.circle.radius);
         }
         else if (key==2)
         {
             geomObj[nrOfElements].geomFig=triangle;
             printf("Enter the coordinates of the triangle: P1 (x1,y1) P2 (x2,y2) P3 (x3,y3)\n");
-            scanf("(%f,%f) (%f,%f) (%f,%f)",&geomObj[nrOfElements].coords.triangle.p1.x1,&geomObj[nrOfElements].coords.triangle.p1.y1,&geomObj[nrOfElements].coords.triangle.p2.x2,
+            scanf("%f %f %f %f %f %f",&geomObj[nrOfElements].coords.triangle.p1.x1,&geomObj[nrOfElements].coords.triangle.p1.y1,&geomObj[nrOfElements].coords.triangle.p2.x2,
             &geomObj[nrOfElements].coords.triangle.p2.y2,&geomObj[nrOfElements].coords.triangle.p3.x3,&geomObj[nrOfElements].coords.triangle.p3.y3);
         }
         else if (key==3)
         {
             geomObj[nrOfElements].geomFig=rectangle;
             printf("Enter the coordinates of the rectangle: P1 (x1,y1) P2 (x2,y2) P3 (x3,y3) P4 (x4,y4)\n");
-            scanf("(%f,%f) (%f,%f) (%f,%f) (%f,%f)",&geomObj[nrOfElements].coords.rectangle.p1.x1,&geomObj[nrOfElements].coords.rectangle.p1.y1,
+            scanf("%f %f %f %f %f %f %f %f",&geomObj[nrOfElements].coords.rectangle.p1.x1,&geomObj[nrOfElements].coords.rectangle.p1.y1,
             &geomObj[nrOfElements].coords.rectangle.p2.x2,&geomObj[nrOfElements].coords.rectangle.p2.y2,
             &geomObj[nrOfElements].coords.rectangle.p3.x3,&geomObj[nrOfElements].coords.rectangle.p3.y3,
             &geomObj[nrOfElements].coords.rectangle.p4.x4,&geomObj[nrOfElements].coords.rectangle.p4.y4);   //wrote them like this so it is more readable
@@ -107,9 +107,33 @@ unsigned read_coords_and_get_nrOfElem(struct complex* geomObj){ //one function s
 }
 
 void write_coords(struct complex* geomObj,unsigned n){
-    for (unsigned i = 0; i<n; i++)
+    printf("-----------------------\n\n");
+    if((n-1)!=0){
+        printf("Your geometric objects:\n\n");
+    }
+    else{
+        printf("You didn't enter any geometric objects\n");
+    }
+    for (unsigned i = 0; i<n-1; i++)
     {
-        //use   geomObj[i].geomFig
+        printf("Geometric object %u. ",i+1);
+        if (geomObj[i].geomFig==circle)
+        {
+            printf("Circle center C(%.2f,%.2f) , radius = %.2f\n",geomObj[i].coords.circle.centerX,geomObj[i].coords.circle.centerY,geomObj[i].coords.circle.radius);
+        }
+        else if (geomObj[i].geomFig==triangle)
+        {
+            printf("Triangle P1(%.2f,%.2f) P2(%.2f,%.2f) P3(%.2f,%.2f)\n",geomObj[i].coords.triangle.p1.x1,geomObj[i].coords.triangle.p1.y1,
+            geomObj[i].coords.triangle.p2.x2,geomObj[i].coords.triangle.p2.y2,
+            geomObj[i].coords.triangle.p3.x3,geomObj[i].coords.triangle.p3.y3);
+        }
+        else if (geomObj[i].geomFig==rectangle)
+        {
+            printf("Rectangle P1(%.2f,%.2f) P2(%.2f,%.2f) P3(%.2f,%.2f) P4(%.2f,%.2f)\n",geomObj[i].coords.rectangle.p1.x1,geomObj[i].coords.rectangle.p1.y1,
+            geomObj[i].coords.rectangle.p2.x2,geomObj[i].coords.rectangle.p2.y2,
+            geomObj[i].coords.rectangle.p3.x3,geomObj[i].coords.rectangle.p3.y3,
+            geomObj[i].coords.rectangle.p4.x4,geomObj[i].coords.rectangle.p4.y4);
+        }
     }
     //do a program lab6PT_2_2.c where you use the function pointers correctly (two functions for each)
 }
