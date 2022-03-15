@@ -36,15 +36,20 @@ struct complex{
     }coords;
     void (*read_coords)(struct complex *c);
     void (*write_coords)(struct complex *c);
-    void (*calcArea)(struct complex *c);
 }c[N];
 
-void readCoords(struct complex *c){
-    for (int i = 0; i < N; i++)
+void read(){
+    for (int i = 0; i < (int)N; i++)
     {
-        printf("Type?(0/1/2)");
-        scanf("%d",&c[i].type);
-        if (c[i].type==0)
+        c[i].read_coords;   //doesn't work
+    }
+}
+
+void read_coords(struct complex* c){
+    static int i=0;
+    printf("Type?(0/1/2)");
+    scanf("%d",&c[i].type);
+    if (c[i].type==0)
         {
             printf("\nl1:");
             scanf("%f",&c[i].coords.triangle.l1);
@@ -52,6 +57,8 @@ void readCoords(struct complex *c){
             scanf("%f",&c[i].coords.triangle.l2);
             printf("\nl3:");
             scanf("%f",&c[i].coords.triangle.l3);
+            float sp = (c[i].coords.triangle.l1+c[i].coords.triangle.l2+c[i].coords.triangle.l3)/2;
+            c[i].coords.triangle.area=sqrt(sp*(sp-c[i].coords.triangle.l1)*(sp-c[i].coords.triangle.l2)*(sp-c[i].coords.triangle.l3));  
         }
         else if (c[i].type==1)
         {
@@ -59,23 +66,32 @@ void readCoords(struct complex *c){
             scanf("%f",&c[i].coords.rectangle.l1);
             printf("\nl2:");
             scanf("%f",&c[i].coords.rectangle.l2);
+            c[i].coords.rectangle.area=(c[i].coords.rectangle.l1*c[i].coords.rectangle.l2);
         }
         else if (c[i].type==2)
         {
             printf("\nRadius:");
             scanf("%f",&c[i].coords.circle.r);
+            float sp = (c[i].coords.triangle.l1+c[i].coords.triangle.l2+c[i].coords.triangle.l3)/2;
+            c[i].coords.circle.area=(3.14*c[i].coords.circle.r*c[i].coords.circle.r);
         }
         else{
             printf("Wrong input\n");
         }
+    i++;
+}
+
+void write(){
+    for (int i = 0; i < (int)N; i++)
+    {
+        c[i].write_coords;  //doesn't work
     }
     
 }
 
-void writeCoords(struct complex *c){
-    for (int i = 0; i < N; i++)
-    {
-        if (c[i].type==0)
+void write_coords(struct complex* c){
+    static int i=0;
+    if (c[i].type==0)
         {
             printf("\n%d. l1 = %.2f l2 = %.2f l3 = %.2f area = %.2f",i+1,c[i].coords.triangle.l1,c[i].coords.triangle.l2,c[i].coords.triangle.l3,c[i].coords.triangle.area);
         }
@@ -86,33 +102,12 @@ void writeCoords(struct complex *c){
         else{
             printf("\n%d. radius = %.2f area = %.2f",i+1,c[i].coords.circle.r,c[i].coords.circle.area);
         }
-    }
     printf("\n");
-    
-}
-
-void calcArea(struct complex *c){
-    for (int i = 0; i < N; i++)
-    {
-        if (c[i].type==0)
-        {
-            float sp = (c[i].coords.triangle.l1+c[i].coords.triangle.l2+c[i].coords.triangle.l3)/2;
-            c[i].coords.triangle.area=sqrt(sp*(sp-c[i].coords.triangle.l1)*(sp-c[i].coords.triangle.l2)*(sp-c[i].coords.triangle.l3));               
-        }
-        else if(c[i].type==1){
-            c[i].coords.rectangle.area=(c[i].coords.rectangle.l1*c[i].coords.rectangle.l2);
-        }
-        else{
-            c[i].coords.circle.area=(3.14*c[i].coords.circle.r*c[i].coords.circle.r);
-        }
-        
-    }
-    
+    i++;
 }
 
 int main(){
-    readCoords(c);
-    calcArea(c);
-    writeCoords(c);
+    read();
+    write();
     return 0;
 }
