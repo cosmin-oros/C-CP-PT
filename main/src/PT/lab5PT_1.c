@@ -43,7 +43,7 @@ void xTurn(char gr[3][3]){
     unsigned k=0;
     unsigned alreadyInit=0;
     printf("\nEnter the position of X:");
-    scanf("%u",&x);
+    scanf("%u",&x);     //x=rand(9-1+1)+1 if you want to play against the computer
     if (x<=9)
     {
         for (int i = 0; i < 3; i++)
@@ -155,12 +155,12 @@ int xWon(char grid[3][3]){
         }
         
     }
-    if ((grid[1][1]==grid[2][2])&&(grid[2][2]==grid[3][3])&&(grid[3][3]=='X'))
+    if ((grid[0][0]==grid[1][1])&&(grid[1][1]==grid[2][2])&&(grid[2][2]=='X'))
     {
         printf("\n X Won\n");
         return 1;
     }
-    if ((grid[1][3]==grid[2][2])&&(grid[2][2]==grid[3][1])&&(grid[3][1]=='X'))
+    if ((grid[0][2]==grid[1][1])&&(grid[1][1]==grid[2][0])&&(grid[2][0]=='X'))
     {
         printf("\n X Won\n");
         return 1;
@@ -183,14 +183,14 @@ int oWon(char grid[3][3]){
         }
         
     }
-    if ((grid[1][1]==grid[2][2])&&(grid[2][2]==grid[3][3])&&(grid[3][3]=='0'))
+    if ((grid[0][0]==grid[1][1])&&(grid[1][1]==grid[2][2])&&(grid[2][2]=='0'))
     {
         printf("\n0 Won\n");
         return 1;
     }
-    if ((grid[1][3]==grid[2][2])&&(grid[2][2]==grid[3][1])&&(grid[3][1]=='0'))
+    if ((grid[0][2]==grid[1][1])&&(grid[1][1]==grid[2][0])&&(grid[2][0]=='0'))
     {
-        printf("0 Won\n");
+        printf("\n0 Won\n");
         return 1;
     }
     return 0;
@@ -216,8 +216,8 @@ int full(char grid[3][3]){
 int main(){
     char grid[3][3];
     initializeGrid(grid);
-    unsigned turn = rand()%1;
-    int xW=0,oW=0,isFull=0;
+    unsigned turn = rand()%(1-0+1)+0;
+    int xW=0,oW=0,isFull=0,won=0;
     while (!xW || !oW || !isFull)
     {
         displayGrid(grid);
@@ -231,10 +231,33 @@ int main(){
             turn=1;
         }
         xW=xWon(grid);
+        if (xW)
+        {
+            won=1;
+            break;
+        }
+        
         oW=oWon(grid);
+        if (oW)
+        {
+            won=1;
+            break;
+        }
+        
         isFull=full(grid);
+        if (isFull)
+        {
+            break;
+        }
+        
         
     }
+    printf("\n");
+    if (!won)
+    {
+        printf("No one won!\n");
+    }
+    
     displayGrid(grid);
     
     return 0;
