@@ -1,0 +1,3 @@
+Cosmin romanian 6 7 8 maths 9 10 9 history 6 7 8
+Maria maths 8 8 8 romanian 10 8 10 history 7 7 7
+Ion history 8 8 8 romanian 9 9 9 maths 10 9 7
