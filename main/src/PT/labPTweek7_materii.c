@@ -26,6 +26,7 @@ struct students{
 void getData(FILE* fptr){
     int c;
     int k=0,l=0;
+    /*try another method to get data into the struct*/
     while ((c=fgetc(fptr))!=EOF)
     {
         for (int i = 0; c!='\n'; i++)
@@ -103,7 +104,7 @@ void getData(FILE* fptr){
     }
 }
 
-void printData(){
+void printData(struct students s[]){
     for (int i = 0; i < 3; i++)
     {
         printf("%s ",s[i].name);    /*print the name of the student*/
@@ -124,6 +125,25 @@ void printData(){
     
 }
 
+void sortData(char*sub,struct students s[]){
+    char w = sub[0];    /*first letter of the subject*/
+    switch (w)
+    {
+    case 'm':
+        /*sort these*/
+        break;
+    case 'r':
+
+        break;
+    case 'h':
+
+        break;
+    default:
+        printf("Wrong type of subject\n");
+        break;
+    }
+}
+
 int main(int argc,char** argv){
     FILE* fptr = fopen("subjectGrades.txt","r");
     if (argc<1)
@@ -134,7 +154,8 @@ int main(int argc,char** argv){
     char* sub = argv[1];
     printf("%s",sub);
     getData(fptr);
-    printData();
+    printData(s);
     fclose(fptr);
+    sortData(sub,s);
     return 0;
 }
