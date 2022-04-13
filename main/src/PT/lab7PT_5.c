@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
 
 /*
  *5. The SubRip file format is one of the most basic of all subtitle
@@ -19,7 +21,27 @@
  */
 
 int main(int argc,char** argv){
+    /*open the srt file*/
     FILE* fptr = fopen("SubRipFile.srt","r+");
+    /*we don't continue if we can't open the file*/
+    if (!fptr)
+    {
+        printf("Couldn't open the file\n");
+        return -1;
+    }
+
+    /*don't continue if the nr of seconds wasn't provided in the command line*/
+    if (argc<2)
+    {
+        printf("Didn't provide the nr of seconds to shift\n");
+        return -1;
+    }
     
+    /*we take the nr of seconds as the second argument of the command line*/
+    int sec = atoi(argv[1]);
+    /* ---- continue from here ---- */
+
+    /*close the file*/
+    fclose(fptr);
     return 0;
 }
