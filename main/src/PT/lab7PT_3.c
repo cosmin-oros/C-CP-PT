@@ -12,11 +12,15 @@ int main(){
     const char* filename = "lab7PT_3.txt";
     int c; 
     FILE* fptr = fopen(filename,"r+");
+    if(!fptr){
+        printf("Couldn't open the file\n");
+        return -1;
+    }
     while ((c = fgetc(fptr)) != EOF) { 
         if (c == '\n'){ 
             fputs("\r\n", fptr);
         }  
     }
-
+    fclose(fptr);
     return 0;
 }

@@ -12,10 +12,15 @@ int main(int argc,char** argv){
     for (int i = 1; i < argc; i++)
     {
         FILE* fptr = fopen(argv[i],"r+");
+        if(!fptr){
+            printf("Couldn't open the file %s",argv[i]);
+            return -1;
+        }
         while ((c = fgetc(fptr)) != EOF) { 
         if (c == '\n'){ 
             fputs("\r\n", fptr);
-        }  
+        }
+        fclose(fptr);  
     }
     }
     
