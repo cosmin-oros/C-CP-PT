@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <ctype.h>
+#include <string.h>
 
 /*
  *5. The SubRip file format is one of the most basic of all subtitle
@@ -19,6 +19,64 @@
  *Write a program to parse the ".srt" text file, remove the text formatting tags and shift the timings with a number of seconds given as
  *command line arguments. Use fscanf () in order to parse the time.
  */
+
+/* --- function for removing text formatting tags --- */
+void removeTags(FILE* f){
+    char* remove1 = "<i>";
+    char* remove2 = "</i>"; 
+    char * text = (char*)malloc(sizeof(char) * 400);
+
+    fread(text, sizeof(char), 400, f);
+    // printf("%s",text);
+
+    int sizeText = strlen(text);
+    int sizeWord1 = strlen(remove1);
+    int sizeWord2 = strlen(remove2);
+    
+    char* p = strstr(text,remove1);
+    /*!!! needs a while loop */
+    if(p)
+    {
+        //The position of the original text
+        int pos = (p - text);
+
+        // Increment the pointer to go in the end of the word to remove
+        p = p + sizeWord1;                
+        
+        // Search in the phrase and copy char per char
+        int i;
+        for(i = 0; i < strlen(p); i++)
+        {
+            text[pos + i] = p[i]; 
+        }
+        // Set the "new end" of the text               
+        text[pos + i] = 0x00;      
+    } 
+    p = strstr(text,remove2);
+    if(p)
+    {
+        //The position of the original text
+        int pos = (p - text);
+
+        // Increment the pointer to go in the end of the word to remove
+        p = p + sizeWord2;                
+        
+        // Search in the phrase and copy char per char
+        int i;
+        for(i = 0; i < strlen(p); i++)
+        {
+            text[pos + i] = p[i]; 
+        }
+        // Set the "new end" of the text               
+        text[pos + i] = 0x00;      
+    } 
+    /*!!! write the text back in the file */
+}
+
+/* --- function for shifting the time with s seconds --- */
+void shiftTiming(FILE* f,int s){
+    //TODO
+}
 
 int main(int argc,char** argv){
     /*open the srt file*/
@@ -39,7 +97,8 @@ int main(int argc,char** argv){
     
     /*we take the nr of seconds as the second argument of the command line*/
     int sec = atoi(argv[1]);
-    /* ---- continue from here ---- */
+    removeTags(fptr);
+    shiftTiming(fptr,sec);
 
     /*close the file*/
     fclose(fptr);
