@@ -33,8 +33,10 @@ void removeTags(FILE* f){
     int sizeWord1 = strlen(remove1);
     int sizeWord2 = strlen(remove2);
     
-    char* p = strstr(text,remove1);
-    /*!!! needs a while loop */
+    char* p = text;
+    while (p)
+    {    
+    p = strstr(text,remove1);
     if(p)
     {
         //The position of the original text
@@ -70,7 +72,8 @@ void removeTags(FILE* f){
         // Set the "new end" of the text               
         text[pos + i] = 0x00;      
     } 
-    /*!!! write the text back in the file */
+    }
+    fwrite(&text,sizeof(text),1,f);
 }
 
 /* --- function for shifting the time with s seconds --- */
