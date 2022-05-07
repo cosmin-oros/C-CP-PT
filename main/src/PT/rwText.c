@@ -15,12 +15,12 @@ int main(int argc,char** argv){
     FILE* out;
 
     //write
-    fopen_s(&out,"point.dat","w");
+    out = fopen("point.dat","w");
     if (!out)
     {
         return 1;
     }
-    int bytes_wrote = fprintf_s(out,"%d, %d\n",p1.x,p2.x);
+    int bytes_wrote = fprintf(out,"%d, %d\n",p1.x,p1.y);
     fclose(out);
     if (bytes_wrote <= 0)
     {
@@ -29,13 +29,13 @@ int main(int argc,char** argv){
 
 
     //read
-    fopen_s(&in,"point.dat","r");
+    in = fopen("point.dat","r");
     if (!in)
     {
         return 3;
     }
     
-    int elements_read = fscanf_s(in,"%d, %d\n",&p2.x,&p2.y);
+    int elements_read = fscanf(in,"%d, %d\n",&p2.x,&p2.y);
     fclose(in);
     if (elements_read < 2)
     {
