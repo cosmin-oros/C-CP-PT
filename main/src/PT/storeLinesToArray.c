@@ -20,7 +20,7 @@ int main(void)
     fptr = fopen(fname, "r");
     while(fgets(line[i], LSIZ, fptr)) 
 	{
-        line[i][strlen(line[i]) - 1] = '\0';
+        line[i][strlen(line[i])-1] = '\0';
         i++;
     }
     tot = i;
@@ -30,5 +30,6 @@ int main(void)
         printf(" %s\n", line[i]);
     }
     printf("\n");
+    fclose(fptr);
     return 0;
 }
