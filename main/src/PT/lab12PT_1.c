@@ -56,7 +56,7 @@ void push(struct Node** head_ref, int new_data)
       (*head_ref)->prev = new_node ;   
   
     /* move the head to point to the new node */
-    (*head_ref)    = new_node;
+    (*head_ref) = new_node;
 }
  
 /* Function to print nodes in a given doubly linked list
