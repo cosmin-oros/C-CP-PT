@@ -21,6 +21,12 @@ typedef struct DNode{
 void push(Node** head_ref,int new_data){
     //allocate mem for new node
     Node* new_node = (Node*)malloc(sizeof(Node));
+    if (!new_node)
+    {
+        printf("Couldn't allocate mem\n");
+        exit(-1);
+    }
+    
 
     new_node->data = new_data;
     new_node->next = *head_ref;
@@ -43,6 +49,12 @@ void splitList(Node* head_ref,DNode** head_ref1, DNode** head_ref2, int key){
     {
         //allocate mem for new node
         DNode* new_node = (DNode*)malloc(sizeof(DNode));
+        if (!new_node)
+        {
+            printf("Couldn't allocate mem\n");
+            exit(-1);
+        }
+        
 
         new_node->data = head_ref->data;
         new_node->prev = NULL;
@@ -62,6 +74,12 @@ void splitList(Node* head_ref,DNode** head_ref1, DNode** head_ref2, int key){
     while (head_ref != NULL)
     {
         DNode* new_node = (DNode*)malloc(sizeof(DNode));
+        if (!new_node)
+        {
+            printf("Couldn't allocate mem\n");
+            exit(-1);
+        }
+        
 
         new_node->data = head_ref->data;
         new_node->prev = NULL;

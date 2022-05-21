@@ -17,6 +17,13 @@ Node* tail = NULL;
 void add(int data){  
     //Create new node  
     Node *newNode = (Node*)malloc(sizeof(Node));  
+    if (!newNode)
+    {
+        printf("Couldn't allocate mem\n");
+        exit(-1);
+    }
+    
+
     newNode->data = data;  
     //Checks if the list is empty.  
     if(head == NULL){  

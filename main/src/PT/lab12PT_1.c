@@ -40,6 +40,12 @@ void push(struct Node** head_ref, int new_data)
 {
     /* allocate node */
     struct Node* new_node = (struct Node*) malloc(sizeof(struct Node));
+    if (!new_node)
+    {
+      printf("Couldn't allocate mem\n");
+      exit(-1);
+    }
+    
   
     /* put in the data  */
     new_node->data  = new_data;
