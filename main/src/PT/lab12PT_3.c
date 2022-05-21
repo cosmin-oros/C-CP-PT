@@ -69,6 +69,21 @@ void removeNode(){
     
 }
 
+// void freeList(){
+//     Node* temp;
+//     Node* tempHead = head;
+//     tempHead = tempHead->next;
+
+//     while (tempHead != head)
+//     {
+//       temp = tempHead;
+//       head = tempHead->next;
+//       free(temp);
+//     }
+    
+    
+// }
+
 int main(){
     //add data to the circular linked list
     add(2);
@@ -84,5 +99,7 @@ int main(){
     removeNode();
 
     display();
+
+    // freeList();
     return 0;
 }
