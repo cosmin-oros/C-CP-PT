@@ -76,6 +76,30 @@ void splitList(Node* head_ref,DNode** head_ref1, DNode** head_ref2, int key){
     
 }
 
+void freeList(Node* head){
+    Node* temp;
+
+    while (head != NULL)
+    {
+      temp = head;
+      head = head->next;
+      free(temp);
+    }
+    
+}
+
+void freeDList(DNode* head){
+    struct DNode* temp;
+
+    while (head != NULL)
+    {
+      temp = head;
+      head = head->next;
+      free(temp);
+    }
+    
+}
+
 int main(){
     //empty list
     Node* head = NULL;
@@ -101,5 +125,8 @@ int main(){
     printList(head2);
     printf("\n");
 
+    freeList(head);
+    freeDList(head1);
+    freeDList(head2);
     return 0;
 }
