@@ -28,7 +28,14 @@ void generateSol(FILE* fp){
         }
         
     }
-    //first valid solution 
+    //first solution
+
+    //test
+    for (int i = 0; i < 6; i++)
+    {
+        printf("%d ",digits[i]);
+    }
+    
     
     
 }
