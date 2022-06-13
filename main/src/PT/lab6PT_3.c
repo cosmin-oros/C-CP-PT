@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <stdlib.h>
+#include <limits.h>
 
 double maxVal(unsigned int n,...){
     va_list valist;
@@ -23,23 +24,27 @@ double maxVal(unsigned int n,...){
 
 double minVal(unsigned int n,...){
     va_list valist;
-    double min;
+    double min = (double)INT_MAX;
     double a;
     int first = 1;
     va_start(valist,n);
     for (unsigned int i = 0; i < n; i++)
     {
-        if (first)
-        {
-            min = va_arg(valist,double);
-            first = 0;
-        }
-        else{
-            if ((a=va_arg(valist,double))<min)
-            {
-                min=a;
-            }
+        // if (first)
+        // {
+        //     min = va_arg(valist,double);
+        //     first = 0;
+        // }
+        // else{
+        //     if ((a=va_arg(valist,double))<min)
+        //     {
+        //         min=a;
+        //     }
             
+        // }
+        if ((a=va_arg(valist,double))<min)
+        {
+                min = a;
         }
         
     }
