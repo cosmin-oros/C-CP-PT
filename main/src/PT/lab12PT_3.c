@@ -72,7 +72,7 @@ void removeNode(){
         current = current->next;
         mid--;
     }
-    current->next = current->next->next;
+    current->next = current->next->next;    
     
 }
 

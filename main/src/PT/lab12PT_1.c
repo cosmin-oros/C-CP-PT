@@ -20,7 +20,7 @@ void reverse(struct Node **head_ref)
      while (current !=  NULL)
      {
         temp = current->prev;
-        current->prev = current->next;
+        current->prev = current->next;  
         current->next = temp;             
         current = current->prev;
      }     

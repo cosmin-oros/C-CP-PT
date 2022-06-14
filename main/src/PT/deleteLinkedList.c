@@ -47,7 +47,7 @@ void push(struct Node** head_ref, int new_data)
     (*head_ref)    = new_node;
 }
   
-int main()
+int main()  
 {
     /* Start with the empty list */
     struct Node* head = NULL;
