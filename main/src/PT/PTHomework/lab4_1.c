@@ -71,6 +71,11 @@ void read(struct stars* s){
             scanf("%f %f %f %s",&s[size].characteristics.varLight.lowLuminosity,&s[size].characteristics.varLight.highLuminosity,
             &s[size].characteristics.varLight.lightPeriodicity,s[size].characteristics.varLight.name);
         }
+        else if (!key)
+        {
+            break;
+        }
+        
         else{
             printf("Wrong input\n\n");
         }
