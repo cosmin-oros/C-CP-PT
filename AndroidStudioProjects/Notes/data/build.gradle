@@ -1,0 +1,73 @@
+apply plugin: 'com.android.library'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion build_versions.target_sdk
+
+    lintOptions {
+        abortOnError false
+    }
+
+    defaultConfig {
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildTypes {
+        debug {
+            testCoverageEnabled = true
+            minifyEnabled false
+        }
+
+        release {
+            testCoverageEnabled = false
+            minifyEnabled true
+        }
+    }
+
+    testOptions.unitTests.all {
+        useJUnitPlatform()
+
+        testLogging {
+            events 'passed', 'skipped', 'failed', 'standardOut', 'standardError'
+        }
+    }
+
+}
+
+dependencies {
+    //to talk to another module within the project:
+    implementation project(":domain")
+
+    implementation deps.room.runtime
+
+    implementation deps.firebase.auth
+    implementation deps.firebase.firestore
+    implementation deps.play_services.auth
+
+    implementation deps.kotlin.kotlin_jre
+    implementation deps.kotlin.coroutines_core
+    implementation deps.kotlin.coroutines_android
+
+    kapt deps.room.compiler
+
+    testImplementation deps.test.junit
+    testRuntimeOnly deps.test.jupiter_engine
+    testRuntimeOnly deps.test.vintage_engine
+    testImplementation deps.test.mockk
+    testImplementation deps.test.kotlin_junit
+}
+
