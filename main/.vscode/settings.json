@@ -2,6 +2,7 @@
     "java.project.sourcePaths": ["src"],
     "java.project.outputPath": "bin",
     "files.associations": {
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "stack": "cpp"
     }
 }
