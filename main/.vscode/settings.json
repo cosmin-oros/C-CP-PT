@@ -3,6 +3,7 @@
     "java.project.outputPath": "bin",
     "files.associations": {
         "iostream": "cpp",
-        "stack": "cpp"
+        "stack": "cpp",
+        "xiosbase": "cpp"
     }
 }
