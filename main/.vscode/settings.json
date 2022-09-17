@@ -4,6 +4,7 @@
     "files.associations": {
         "iostream": "cpp",
         "stack": "cpp",
-        "xiosbase": "cpp"
+        "xiosbase": "cpp",
+        "utility": "cpp"
     }
 }
