@@ -6,6 +6,7 @@
         "stack": "cpp",
         "xiosbase": "cpp",
         "utility": "cpp",
-        "list": "cpp"
+        "list": "cpp",
+        "vector": "cpp"
     }
 }
