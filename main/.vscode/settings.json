@@ -9,6 +9,7 @@
         "list": "cpp",
         "vector": "cpp",
         "unordered_map": "cpp",
-        "forward_list": "cpp"
+        "forward_list": "cpp",
+        "set": "cpp"
     }
 }
