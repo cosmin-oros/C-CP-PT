@@ -24,6 +24,7 @@ typedef struct Student{
 
 }student;
 
+// function to read data from the file and store it in an array 
 void readData(FILE* fp, student s[N]){
     char* tempOptionals;
 
@@ -35,8 +36,23 @@ void readData(FILE* fp, student s[N]){
 
         // split the optionals
         char* token = strtok(tempOptionals, " ");
-        // s[i].optional1 = token;
+        strcpy(s[i].optional1, token);
+        token = strtok(NULL, " ");
+        strcpy(s[i].optional2, token);
+        token = strtok(NULL, " ");
+        strcpy(s[i].optional3, token);
+        token = strtok(NULL, "\n");
+        strcpy(s[i].optional4, token);
+        
+    }
+    
+}
 
+// function to print the student array data
+void printData(student s[N]){
+    for (int i = 0; i < N; i++)
+    {
+        printf("%s\n%s %s %s %s\n", s[i].name, s[i].optional1, s[i].optional2, s[i].optional3, s[i].optional4);
     }
     
 }
@@ -55,6 +71,7 @@ int main(int argc, char** argv){
     student s[N];
 
     readData(fp, s);
+    printData(s);
 
     return 0;
 }
