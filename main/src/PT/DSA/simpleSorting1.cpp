@@ -57,6 +57,52 @@ void printData(student s[N]){
     
 }
 
+// function to swap two names
+void swap(char* a, char* b){
+    char* temp;
+    strcpy(temp, a);
+    strcpy(a, b);
+    strcpy(b, temp);
+}
+
+// shaker sort ascending and descending
+void shakersort(student s[N], int order){
+    // order == 1 -> ascending
+    if (order){
+        for (int p = 1; p <= N / 2; p++)
+        {
+            for (int i = p - 1; i < N - p; i++){
+                if (strcmp(s[i].name, s[i + 1].name) > 0)
+                {
+                    swap(s[i].name, s[i + 1].name);
+                }
+            }
+            for (int i = N - p - 1; i >= p; i--){
+                if (strcmp(s[i].name, s[i + 1].name) < 0)
+                {
+                    swap(s[i].name, s[i - 1].name);
+                }
+            }
+        }
+    }else{
+        for (int p = 1; p <= N / 2; p++)
+        {
+            for (int i = p - 1; i < N - p; i++){
+                if (strcmp(s[i].name, s[i + 1].name) < 0)
+                {
+                    swap(s[i].name, s[i + 1].name);
+                }
+            }
+            for (int i = N - p - 1; i >= p; i--){
+                if (strcmp(s[i].name, s[i + 1].name) > 0)
+                {
+                    swap(s[i].name, s[i - 1].name);
+                }
+            }
+        }
+    }
+}
+
 int main(int argc, char** argv){
     // open the file then check if it was opened
     FILE* fp = fopen("Studenti1.txt", "r");
@@ -71,6 +117,11 @@ int main(int argc, char** argv){
     student s[N];
 
     readData(fp, s);
+    printData(s);
+
+    shakersort(s, 1);
+    printData(s);
+    shakersort(s, 0);
     printData(s);
 
     return 0;
