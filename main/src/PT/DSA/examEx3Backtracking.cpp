@@ -58,7 +58,7 @@ bool is_valid(int x, int y, char color) {
 
 bool color_map(int x, int y) {
     // All cells have been colored
-    if (x == N && y == 0) {
+    if (x == N && y == M) {
         return true;
     }
 
